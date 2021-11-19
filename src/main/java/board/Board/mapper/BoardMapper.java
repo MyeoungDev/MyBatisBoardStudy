@@ -14,7 +14,7 @@ public interface BoardMapper {
     // 게시글 수정
     public int updateBoard(BoardDTO params);
     // 게시글 삭제
-    public int deleteBoards(Long idx);
+    public int deleteBoard(Long idx);
     // 게시글 전체 조회
     public List<BoardDTO> selectBoardList();
     // 전체 게시글 수
