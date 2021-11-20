@@ -37,3 +37,34 @@
 - 하지만, MyBatis는 인터페이스에 @Mapper만 지정해주면,
 - XML Mapper에서 메서드의 이름과 일치하는 SQL 문을 찾아 실행한다.
 - Mapper 영역은 데이터베이스와의 통신, 즉 SQL 쿼리를 호출한는 것이 전부이며, 다른 로직은 전혀 필요하지 않다.
+
+### @Service
+- 해당 클래스가 비지니스 로직을 담당하는 서비스 클래스임을 의미.
+
+### @Controller
+- 해당 클래스가 사용자의 요청과 응답을 처리하는 컨트롤러 클래스임을 의미.
+
+### @GetMapping
+- 기존의 URI 매핑) @RequestMapping(value = "...", method = RequestMethod.XXX)
+- @RequestMapping을 이용해서 value에는 URI 값을, method 속성에는 HTTP 요청 메서드를 지정하는 방식 사용.
+- 스프링 4.3버전부터 @GetMapping, @PostMapping 등, 요청 메서드의 타입별로 매핑 처리 가능.
+
+### @RequestParam
+- 뷰(화면)에서 전달받은 파라미터를 처리하는데 사용 된다.
+- value 타입은 String 으로 파라미터 이름을 나타낸다.
+- required 타입은 boolean 으로 해당 파라미터가 반드시 필수 인지 여부이다. default값은 true이다.
+```java
+public String openBoardWrite(@RequestParam(value = "idx", required = false) Long idx, Model model) {
+
+```
+예를 들어, 게시글 리스트 페이지에서 게시글 등록 페이지로 이동하면,
+<br>
+
+게시글 번호(idx)는 null로 전송된다.
+<br>
+
+하지만, 게시글 상세 페이지에서 수정하기 버튼을 클릭하면
+<br>
+
+컨트롤러 게시글 번호(idx)가 파라미터로 전송되고, 컨트롤러는 전달받은 게시글 번호(idx)를 전달하게 된다.
+
