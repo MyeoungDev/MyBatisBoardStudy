@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 public class BoardController {
 
@@ -46,5 +48,13 @@ public class BoardController {
             // TODO => 시스템에 문제가 발생했다는 메세지 출력
         }
         return "redirect:/board/list.do";
+    }
+
+    @GetMapping(value = "/board/list.do")
+    public String openBoardList(Model model) {
+        List<BoardDTO> boardList = boardService.getBoardList();
+        model.getAttribute("boardList", boardList);
+
+        return "board/list";
     }
 }
