@@ -53,7 +53,7 @@ public class BoardController {
     @GetMapping(value = "/board/list.do")
     public String openBoardList(Model model) {
         List<BoardDTO> boardList = boardService.getBoardList();
-        model.getAttribute("boardList", boardList);
+        model.addAttribute("boardList", boardList);
 
         return "board/list";
     }

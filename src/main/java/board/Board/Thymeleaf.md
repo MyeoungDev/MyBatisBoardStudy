@@ -64,7 +64,34 @@ html 태그에 위의 코드를 추가해주는 것이 필요하다.
 ## xmlns:layout, xmlnslayout:decorator
 - xmlns:layout은 타임리프의 레이아웃 기능을 사용하기 위한 선언이다.
 - xmlnslayout:decorator 레이아웃으로 basic.html을 사용하겠다는 의미이다.
-- ```<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="board/layout/basic">```이런식으로 선언한다.
+
+Gradle 추가
+
+```	gradle 
+implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect' /* Thymeleaf Layout */
+```
+
+선언방법
+
+```html
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="board/layout/basic">
+```
+위의 방식 오류
+
+```
+2021-11-21 17:08:00.095  WARN 22472 --- [nio-8080-exec-1] n.n.u.t.decorators.DecoratorProcessor    : The layout:decorator/data-layout-decorator processor has been deprecated and will be removed in the next major version of the layout dialect.
+```
+해결
+
+```layout:decorator="board/layout/basic"``` 을
+
+```layout:decorate="~{board/layout/basic}``` 으로 변경
+
+즉, 아래의 코드처럼 변경 해야 한다.
+```html
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{board/layout/basic}">
+```
+
 
 ## th:block layout:fragment
 - layout:fragment 속성에 이름을 지정해서 실제 Content 페이지의 내용을 채우게 된다.
@@ -79,7 +106,9 @@ html 태그에 위의 코드를 추가해주는 것이 필요하다.
 - ```<form>```태그에서 submit을 할 때, 데이터가 th:object에 설정해둔 객체로 받아진다.
 - 즉, 컨트롤러와 뷰(화면) 사이의 DTO클래스의 객체이다.
 
-``` <form class="form-horizontal" th:action="@{/board/register.do}" th:object="${board}" method="post">```
+``` html
+<form class="form-horizontal" th:action="@{/board/register.do}" th:object="${board}" method="post">
+```
 
 ## th:field
 - 위의 th:object 속성을 이용하면, th:field를 이용해서 HTML 태그에 멤버 변수를 매핑 할 수 있다.
@@ -88,7 +117,9 @@ html 태그에 위의 코드를 추가해주는 것이 필요하다.
 - th:field는 ${}표현식이 아닌, *{}표현식을 사용한다.
 - th:object와 th:field는 컨트롤러에서 특정 클래스의 객체를 전달 받은 경우에만 사용 가능하다.
 
-```<input type="text" th:field="*{title}" class="form-control" placeholder="제목을 입력해 주세요." />```
+```html
+<input type="text" th:field="*{title}" class="form-control" placeholder="제목을 입력해 주세요." />
+```
 
 ## th:checked
 - 체크박스의 경우, th:checked 속성을 이용해서 조건이 "true"에 해당하면, checked 속성을 적용한다.
@@ -96,3 +127,18 @@ html 태그에 위의 코드를 추가해주는 것이 필요하다.
 ## th:inline="javascript"
 - ```<script>``` 태그에 th:inline 속성을 javascript로 지정해야 자바스크립트를 사용할 수 있다.
 
+## th:if, th:unless
+- th:if는 if 문과 동일하고, th:unless는 else 문과 같다고 볼 수 있다.
+- th:unless는 일반적인 언어의 else 문과는 달리 th:if에 들어가는 조건과 동일한 조건을 지정해야 한다.
+
+## th:each
+- th:each는 JSTL의 ```<c:foreach>```, 자바의 forEach와 유사한 기능이다.
+
+## th URI GET 파라미터 추가 방식
+- 일반적인 GET 파라미터 추가 방식 
+
+```/board/view.do?idx=${idx}&page=${page}```
+
+- 타임리프 GET 파라미터 추가 방식
+
+```/board/view.do(idx=${idx},page=${page}```
