@@ -32,6 +32,7 @@
 <br>
 
 ---
+# 2편
 ### Mapper
 - 기존읜 스프링은 DAO(Data Access Object) 클래스에 @Repository를 선언해서 해당 클래스가 데이터베이스와 통신하는 클래스임을 나타냈다.
 - 하지만, MyBatis는 인터페이스에 @Mapper만 지정해주면,
@@ -68,3 +69,5 @@ public String openBoardWrite(@RequestParam(value = "idx", required = false) Long
 
 컨트롤러 게시글 번호(idx)가 파라미터로 전송되고, 컨트롤러는 전달받은 게시글 번호(idx)를 전달하게 된다.
 
+---
+# 3편
