@@ -71,3 +71,8 @@ public String openBoardWrite(@RequestParam(value = "idx", required = false) Long
 
 ---
 # 3편
+
+### @Component
+- 스프링 컨테이너에 빈(Bean)으로 등록하기 위한 애너테이션이다.
+- @Bean 은 개발자가 제어할 수 없는 외부 라이브러리를 빈(Bean)으로 등록할 떄 사용하고,
+- @Component 는 개발자가 직접 정의한 클래스를 빈(Bean)으로 등록할때 사용한다.
