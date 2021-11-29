@@ -70,24 +70,26 @@
 
     <select id="selectBoardList" parameterType="board.Board.domain.BoardDTO" resultType="board.Board.domain.BoardDTO">
         SELECT
-        <include refid="boardColumns" />
+           <include refid="boardColumns" />
         FROM
-        tb_board
+            tb_board
         WHERE
-        delete_yn = 'N'
+            delete_yn = 'N'
         ORDER BY
-        notice_yn ASC,
-        idx DESC,
-        insert_time DESC
+            notice_yn ASC,
+            idx DESC,
+            insert_time DESC
+        LIMIT
+            #{paginationInfo.firstRecordIndex}, #{recordsPerPage}
     </select>
 
     <select id="selectBoardTotalCount" parameterType="board.Board.domain.BoardDTO" resultType="int">
         SELECT
-        COUNT(*)
+            COUNT(*)
         FROM
-        tb_board
+            tb_board
         WHERE
-        delete_yn = 'N'
+            delete_yn = 'N'
     </select>
 
 </mapper>

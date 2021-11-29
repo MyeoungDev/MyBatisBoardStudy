@@ -76,3 +76,14 @@ public String openBoardWrite(@RequestParam(value = "idx", required = false) Long
 - 스프링 컨테이너에 빈(Bean)으로 등록하기 위한 애너테이션이다.
 - @Bean 은 개발자가 제어할 수 없는 외부 라이브러리를 빈(Bean)으로 등록할 떄 사용하고,
 - @Component 는 개발자가 직접 정의한 클래스를 빈(Bean)으로 등록할때 사용한다.
+
+### @EnableTransactionManagement
+- 스프링에서 제공하는 애너테이셔 기반 트랜잭션을 활성화한다.
+
+### @ModelAttribute
+- @ModelAttribute를 이용하면 파라미터로 전달받은 객체를 자동으로 뷰까지 전달할 수 있다.
+- 예를 들어, 1:1로 매핑되는 파라미터는 @RequestParam으로 넘겨 받은 다음,
+- Model 인터페이스의 addAttribute(key, value) 메서드를 이용해서 화면(View)으로 전달했다.
+- 하지만, @ModelAttribute는 별다른 처리없이 바로 화면(View)로 전송한다.
+- 만약, @ModelAttribute("a") Criteria criteria로 지정했다면,
+- 뷰에서는 ${a.currentPageNo}과 같은 방식으로 객체에 접근할 수 있다.

@@ -13,7 +13,7 @@ public class LoggerAspect {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Around("execution(* com.board..controller.*Controller.*(..)) or execution(* com.board..service.*Impl.*(..)) or execution(* com.board..mapper.*Mapper.*(..))")
+    @Around("execution(* board.Board..controller.*Controller.*(..)) or execution(* board.Board..service.*Impl.*(..)) or execution(* board.Board..mapper.*Mapper.*(..))")
     public Object printLog(ProceedingJoinPoint joinPoint) throws Throwable {
 
         String type = "";
@@ -21,13 +21,15 @@ public class LoggerAspect {
 
         if (name.contains("Controller") == true) {
             type = "Controller ===> ";
+
         } else if (name.contains("Service") == true) {
-            type = "Service ===> ";
+            type = "ServiceImpl ===> ";
+
         } else if (name.contains("Mapper") == true) {
             type = "Mapper ===> ";
         }
 
-        logger.debug(type + name + "."  + joinPoint.getSignature().getName() + "()");
+        logger.debug(type + name + "." + joinPoint.getSignature().getName() + "()");
         return joinPoint.proceed();
     }
 }

@@ -1,6 +1,7 @@
 package board.Board.mapper;
 
 import board.Board.domain.BoardDTO;
+import board.Board.paging.Criteria;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -16,8 +17,8 @@ public interface BoardMapper {
     // 게시글 삭제
     public int deleteBoard(Long idx);
     // 게시글 전체 조회
-    public List<BoardDTO> selectBoardList();
+    public List<BoardDTO> selectBoardList(BoardDTO params);
     // 전체 게시글 수
-    public int selectBoardTotalCount();
+    public int selectBoardTotalCount(BoardDTO params);
 
 }
