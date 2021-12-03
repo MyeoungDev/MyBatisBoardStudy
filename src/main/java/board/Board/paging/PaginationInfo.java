@@ -33,6 +33,21 @@ public class PaginationInfo {
     /* 다음 페이지 존재 여부*/
     private boolean hasNextPage;
 
+
+    public PaginationInfo(Criteria criteria) {
+        if (criteria.getCurrentPageNo() < 1) {
+            criteria.setCurrentPageNo(1);
+        }
+        if (criteria.getRecordsPerPage() < 1 || criteria.getRecordsPerPage() > 100) {
+            criteria.setRecordsPerPage(10);
+        }
+        if (criteria.getPageSize() < 5 || criteria.getPageSize() > 20) {
+            criteria.setPageSize(10);
+        }
+
+        this.criteria = criteria;
+    }
+
     public void setTotalRecordCount(int totalRecordCount) {
         this.totalPageCount = totalRecordCount;
 

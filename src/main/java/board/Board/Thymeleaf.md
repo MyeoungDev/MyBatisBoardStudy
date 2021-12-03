@@ -146,3 +146,10 @@ implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect' /* Thymeleaf L
 ## <![CDATA[]]>
 - 타임리프는 '<','> '태그를 엄격하게 검사하기 때문에 자바스크립트 코드는 꼭 CDATA로 묶어줘야 한다.
 - CDATA는 특수문자를 전부 문자열로 치환할 때 사용한다.
+
+---
+# Thymeleaf 정리 - 2
+
+## th:with
+- JSTL의 `<c:set/>`과 마찬가지로 변수를 선언할 때 사용한다.
+
